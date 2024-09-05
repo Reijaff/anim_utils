@@ -28,31 +28,25 @@ class AnimateZoomImageOperator(bpy.types.Operator):
 
     def execute(self, context):
 
-
         strip = context.scene.sequence_editor.active_strip
 
         if strip.type != "IMAGE":  # Simplified check
             self.report({"ERROR"}, "Can only remove background from image strips")
             return {"CANCELLED"}
 
-        fs = strip.frame_start
-        fe = strip.frame_final_end
+        fs = int(strip.frame_start)
+        fe = int(strip.frame_final_end)
 
-        bpy.context.scene.frame_current = fs
-
-        strip.keyframe_insert(data_path="transform.scale_x")
-        strip.keyframe_insert(data_path="transform.scale_y")
+        strip.transform.keyframe_insert(data_path="scale_x", frame=fs)
+        strip.transform.keyframe_insert(data_path="scale_y", frame=fs)
 
         strip.transform.scale_x = 2
         strip.transform.scale_y = 2
 
-        bpy.context.scene.frame_current = fe
-
-        strip.keyframe_insert(data_path="transform.scale_y")
-        strip.keyframe_insert(data_path="transform.scale_y")
+        strip.transform.keyframe_insert(data_path="scale_x", frame=fe)
+        strip.transform.keyframe_insert(data_path="scale_y", frame=fe)
 
         return {"FINISHED"}
-
 
 
 def menu_anim_utils(self, context):
