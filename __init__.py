@@ -38,7 +38,7 @@ class AnimateZoomImageOperator(bpy.types.Operator):
         fs = strip.frame_start
         fe = strip.frame_final_end
 
-        bpy.context.frame_current = fs
+        bpy.context.scene.frame_current = fs
 
         strip.keyframe_insert(data_path="transform.scale_x")
         strip.keyframe_insert(data_path="transform.scale_y")
@@ -46,7 +46,7 @@ class AnimateZoomImageOperator(bpy.types.Operator):
         strip.transform.scale_x = 2
         strip.transform.scale_y = 2
 
-        bpy.context.frame_current = fe
+        bpy.context.scene.frame_current = fe
 
         strip.keyframe_insert(data_path="transform.scale_y")
         strip.keyframe_insert(data_path="transform.scale_y")
