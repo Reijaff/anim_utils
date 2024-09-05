@@ -55,9 +55,9 @@ class AnimateZoomImageOperator(bpy.types.Operator):
 
 
 
-def menu_anim_unils(self, context):
+def menu_anim_utils(self, context):
     self.layout.separator()
-    self.layout.operator(AnimateZoomImageOperator.bl_idname, icon="OUTLINER_OB_IMAGE")
+    self.layout.operator(AnimateZoomImageOperator.bl_idname)
 
 
 def register():
